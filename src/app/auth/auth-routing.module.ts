@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { Login } from './components/login/login';
 import { Register } from './components/register/register';
 import { authRoutes } from './auth-routes.const';
+import { GoogleAuthCallback } from './components/google-auth-callback/google-auth-callback';
+import { AppConsts } from '../app.const';
 
 const routes: Routes = [
 	{
@@ -12,6 +14,10 @@ const routes: Routes = [
 	{
 		path: `${authRoutes.register}`,
 		component: Register,
+	},
+	{
+		path: `${AppConsts.googleCallbackRoute}`,
+		component: GoogleAuthCallback,
 	},
 ];
 

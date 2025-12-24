@@ -21,3 +21,8 @@ export class LoadUserFromJWT {
 export class Logout {
 	static readonly type = '[Auth] Logout';
 }
+
+export class LoginWithGoogle {
+	static readonly type = '[Auth] Login With Google';
+	constructor(public idToken: string) {}
+}

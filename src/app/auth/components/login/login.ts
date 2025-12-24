@@ -5,6 +5,7 @@ import { Navigate } from '@ngxs/router-plugin';
 import { appRoutes } from '../../../app-routes.const';
 import { authRoutes } from '../../auth-routes.const';
 import { take } from 'rxjs';
+import { AppConsts } from '../../../app.const';
 
 @Component({
 	selector: 'app-login',
@@ -28,5 +29,10 @@ export class Login {
 
 	protected navigateToRegister() {
 		this.store.dispatch(new Navigate([`/${appRoutes.auth}/${authRoutes.register}`]));
+	}
+
+	protected loginByGoogle() {
+		const params = new URLSearchParams(AppConsts.googleAuthSettings);
+		window.location.href = AppConsts.googleAuthWindow + params.toString();
 	}
 }

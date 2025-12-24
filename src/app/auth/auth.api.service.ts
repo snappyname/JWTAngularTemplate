@@ -4,6 +4,7 @@ import { LoginModel } from '../../../models/LoginModel';
 import { TokensModel } from '../../../models/TokensModel';
 import { Injectable } from '@angular/core';
 import { RefreshTokenModel } from '../../../models/RefreshTokenModel';
+import { GoogleLoginRequest } from '../../../models/GoogleLoginRequest';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService extends RequestHandler {
@@ -33,10 +34,17 @@ export class AuthApiService extends RequestHandler {
 		);
 	}
 
-	refreshToken() {
+	public refreshToken(): Observable<TokensModel> {
 		return this.httpPost<TokensModel, RefreshTokenModel>(
 			'/users/refreshToken',
 			new RefreshTokenModel({ refreshToken: this.getRefreshToken() }),
+		);
+	}
+
+	public loginWithGoogle(token: string): Observable<TokensModel> {
+		return this.httpPost<TokensModel, GoogleLoginRequest>(
+			'/users/auth/google',
+			new GoogleLoginRequest({ idToken: token }),
 		);
 	}
 }
