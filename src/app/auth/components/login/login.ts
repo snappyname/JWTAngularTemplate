@@ -35,4 +35,9 @@ export class Login {
 		const params = new URLSearchParams(AppConsts.googleAuthSettings);
 		window.location.href = AppConsts.googleAuthWindow + params.toString();
 	}
+
+	protected loginByGithub() {
+		const params = new URLSearchParams(AppConsts.githubAuthSettings);
+		window.location.href = AppConsts.githubAuthWindow + params.toString();
+	}
 }

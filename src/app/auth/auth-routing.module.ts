@@ -5,6 +5,7 @@ import { Register } from './components/register/register';
 import { authRoutes } from './auth-routes.const';
 import { GoogleAuthCallback } from './components/google-auth-callback/google-auth-callback';
 import { AppConsts } from '../app.const';
+import { GithubAuthCallback } from './components/github-auth-callback/github-auth-callback';
 
 const routes: Routes = [
 	{
@@ -18,6 +19,10 @@ const routes: Routes = [
 	{
 		path: `${AppConsts.googleCallbackRoute}`,
 		component: GoogleAuthCallback,
+	},
+	{
+		path: `${AppConsts.githubCallbackRoute}`,
+		component: GithubAuthCallback,
 	},
 ];
 

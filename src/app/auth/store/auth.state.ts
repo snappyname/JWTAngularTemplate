@@ -1,6 +1,6 @@
 import { State, Action, Selector, StateContext, Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
-import { LoadUserFromJWT, LoginAction, LoginWithGoogle, Logout, RegisterAction } from './auth.actions';
+import { LoadUserFromJWT, LoginAction, LoginWithGithub, LoginWithGoogle, Logout, RegisterAction } from './auth.actions';
 import { AuthStateModel } from './auth.model';
 import { AuthApiService } from '../auth.api.service';
 import { tap } from 'rxjs';
@@ -73,6 +73,16 @@ export class AuthState {
 	@Action(LoginWithGoogle)
 	loginWithGoogle(ctx: StateContext<AuthStateModel>, action: LoginWithGoogle) {
 		return this.apiService.loginWithGoogle(action.idToken).pipe(
+			tap((x) => {
+				this.apiService.setTokens(x.jwtToken, x.refreshToken);
+				this.store.dispatch(LoadUserFromJWT);
+			}),
+		);
+	}
+
+	@Action(LoginWithGithub)
+	loginWithGithub(ctx: StateContext<AuthStateModel>, action: LoginWithGoogle) {
+		return this.apiService.loginWitGithub(action.idToken).pipe(
 			tap((x) => {
 				this.apiService.setTokens(x.jwtToken, x.refreshToken);
 				this.store.dispatch(LoadUserFromJWT);

@@ -4,7 +4,8 @@ import { LoginModel } from '../../../models/LoginModel';
 import { TokensModel } from '../../../models/TokensModel';
 import { Injectable } from '@angular/core';
 import { RefreshTokenModel } from '../../../models/RefreshTokenModel';
-import { GoogleLoginRequest } from '../../../models/GoogleLoginRequest';
+import { OAuthTokenModel } from '../../../models/OAuthTokenModel';
+import { AppConsts } from '../app.const';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService extends RequestHandler {
@@ -22,29 +23,36 @@ export class AuthApiService extends RequestHandler {
 
 	public getTokes(email: string, password: string): Observable<TokensModel> {
 		return this.httpPost<TokensModel, LoginModel>(
-			'/users/login',
+			'/auth/login',
 			new LoginModel({ email: email, password: password }),
 		);
 	}
 
 	public register(email: string, password: string): Observable<TokensModel> {
 		return this.httpPost<TokensModel, LoginModel>(
-			'/users/register',
+			'/auth/register',
 			new LoginModel({ email: email, password: password }),
 		);
 	}
 
 	public refreshToken(): Observable<TokensModel> {
 		return this.httpPost<TokensModel, RefreshTokenModel>(
-			'/users/refreshToken',
+			'/auth/refreshToken',
 			new RefreshTokenModel({ refreshToken: this.getRefreshToken() }),
 		);
 	}
 
 	public loginWithGoogle(token: string): Observable<TokensModel> {
-		return this.httpPost<TokensModel, GoogleLoginRequest>(
-			'/users/auth/google',
-			new GoogleLoginRequest({ idToken: token }),
+		return this.httpPost<TokensModel, OAuthTokenModel>(
+			AppConsts.googleAuthRoute,
+			new OAuthTokenModel({ idToken: token }),
+		);
+	}
+
+	public loginWitGithub(token: string): Observable<TokensModel> {
+		return this.httpPost<TokensModel, OAuthTokenModel>(
+			AppConsts.githubAuthRoute,
+			new OAuthTokenModel({ idToken: token }),
 		);
 	}
 }
