@@ -7,6 +7,7 @@ import { tap } from 'rxjs';
 import { TokensModel } from '../../../../models/TokensModel';
 import { jwtDecode } from 'jwt-decode';
 import { JwtModel } from '../../../../models/JwtModel';
+import { SignalRService } from '../../core/signalR/signal-r.service';
 
 @State<AuthStateModel>({
 	name: 'auth',
@@ -21,6 +22,7 @@ export class AuthState {
 	constructor(
 		private apiService: AuthApiService,
 		private store: Store,
+		private signalR: SignalRService,
 	) {}
 
 	@Selector()
@@ -57,6 +59,7 @@ export class AuthState {
 				userId: payload.userId,
 				isAuthenticated: true,
 			});
+			this.signalR.start();
 		}
 	}
 
@@ -67,6 +70,7 @@ export class AuthState {
 			userId: '',
 			isAuthenticated: false,
 		});
+		this.signalR.stop();
 		this.apiService.logout();
 	}
 

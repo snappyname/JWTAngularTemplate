@@ -2,6 +2,7 @@ import { authRoutes } from './auth/auth-routes.const';
 
 export enum AppConst {
 	baseUrl = 'http://localhost:5069',
+	sinalRUrl = 'http://localhost:5069/hubs/broadcast',
 }
 
 export class AppConsts {

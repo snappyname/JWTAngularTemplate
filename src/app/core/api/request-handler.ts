@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppConst } from '../../app.const';
 
-export class RequestHandler {
+export abstract class RequestHandler {
 	protected readonly http = inject(HttpClient);
 
 	protected baseUrl: string = AppConst.baseUrl;
