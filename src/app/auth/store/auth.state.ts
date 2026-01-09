@@ -4,9 +4,9 @@ import { LoadUserFromJWT, LoginAction, LoginWithGithub, LoginWithGoogle, Logout,
 import { AuthStateModel } from './auth.model';
 import { AuthApiService } from '../auth.api.service';
 import { tap } from 'rxjs';
-import { TokensModel } from '../../../../models/TokensModel';
+import { TokensModel } from '../../../../models/generated/tokens.model';
 import { jwtDecode } from 'jwt-decode';
-import { JwtModel } from '../../../../models/JwtModel';
+import { JwtModel } from '../../core/api/JwtModel';
 import { SignalRService } from '../../core/signalR/signal-r.service';
 
 @State<AuthStateModel>({

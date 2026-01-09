@@ -1,11 +1,11 @@
 import { RequestHandler } from '../core/api/request-handler';
 import { Observable } from 'rxjs';
-import { LoginModel } from '../../../models/LoginModel';
-import { TokensModel } from '../../../models/TokensModel';
 import { Injectable } from '@angular/core';
-import { RefreshTokenModel } from '../../../models/RefreshTokenModel';
-import { OAuthTokenModel } from '../../../models/OAuthTokenModel';
 import { AppConsts } from '../app.const';
+import { LoginModel } from '../../../models/generated/login.model';
+import { TokensModel } from '../../../models/generated/tokens.model';
+import { RefreshTokenModel } from '../../../models/generated/refresh-token.model';
+import { OAuthTokenModel } from '../../../models/generated/o-auth-token.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService extends RequestHandler {

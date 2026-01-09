@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 import { AuthApiService } from '../../auth/auth.api.service';
 import { jwtDecode } from 'jwt-decode';
-import { JwtModel } from '../../../../models/JwtModel';
+import { JwtModel } from './JwtModel';
 import { AppConsts } from '../../app.const';
 import { Store } from '@ngxs/store';
 import { Logout } from '../../auth/store/auth.actions';

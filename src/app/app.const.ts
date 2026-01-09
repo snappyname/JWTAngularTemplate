@@ -17,7 +17,7 @@ export class AppConsts {
 	public static readonly githubAuthWindow: string = 'https://github.com/login/oauth/authorize?';
 
 	public static readonly googleAuthSettings = {
-		client_id: '', //from https://console.cloud.google.com/auth/clients
+		client_id: '504402721787-iuim1ll4b0sdomj9t6j3la06rfidmjc1.apps.googleusercontent.com', //from https://console.cloud.google.com/auth/clients
 		redirect_uri: 'http://localhost:4200/auth/google/callback', //from app settings on google app page
 		response_type: 'code',
 		scope: 'openid email profile',
@@ -26,7 +26,7 @@ export class AppConsts {
 	};
 
 	public static readonly githubAuthSettings = {
-		client_id: '', //from https://github.com/settings/developers
+		client_id: 'Ov23lioLfY67fwYvviS0', //from https://github.com/settings/developers
 		redirect_uri: 'http://localhost:4200/auth/github/callback',
 		scope: 'user:email',
 	};

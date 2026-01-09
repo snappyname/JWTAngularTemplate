@@ -1,8 +1,8 @@
 import { Injectable, NgZone } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
-import { BroadcastMessageModel } from '../../../../models/BroadcastMessageModel';
+import { BroadcastMessageModel } from './BroadcastMessageModel';
 import { BroadcastMessageTypes } from './message-types';
-import { TestModel } from '../../../../models/SignalR/TestModel';
+import { TestModel } from '../../../../models/generated/SignalR/test.model';
 import { AppConst } from '../../app.const';
 import { AuthApiService } from '../../auth/auth.api.service';
 

@@ -4,7 +4,7 @@ import { DashboardApiService } from './dashboard.api.service';
 import { Store } from '@ngxs/store';
 import { tap } from 'rxjs';
 import { SetUserDetails } from './store/dashboard.actions';
-import { UserModel } from '../../../models/UserModel';
+import { UserModel } from '../../../models/generated/user.model';
 
 export const userResolver: ResolveFn<UserModel> = () => {
 	const dashboardApi = inject(DashboardApiService);

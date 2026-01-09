@@ -1,5 +1,5 @@
 import { RequestHandler } from '../core/api/request-handler';
-import { UserModel } from '../../../models/UserModel';
+import { UserModel } from '../../../models/generated/user.model';
 
 export class DashboardApiService extends RequestHandler {
 	public getMe() {
