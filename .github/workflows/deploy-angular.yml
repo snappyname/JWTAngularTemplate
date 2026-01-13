@@ -33,6 +33,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "dist/TemplateWebAuth/browser/**"
           target: ${{ secrets.EC2_PATH }}
+          strip_components: 4
 
       - name: Reload nginx
         uses: appleboy/ssh-action@v1.0.3
