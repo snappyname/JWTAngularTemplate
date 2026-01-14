@@ -2,7 +2,7 @@ import { authRoutes } from './auth/auth-routes.const';
 import { environment } from '../environment/environment.prod';
 
 export const AppConst = {
-	baseUrl: 'http://localhost:5069/api',
+	baseUrl: environment.apiUrl,
 	sinalRUrl: 'http://localhost:5069/hubs/broadcast',
 	frontendUrl: environment.baseUrl as string,
 };
