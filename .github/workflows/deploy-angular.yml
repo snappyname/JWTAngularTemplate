@@ -42,7 +42,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             sudo rm -rf ${{ secrets.EC2_PATH }}/*
-            sudo cp -r /tmp/deploy/browser/* ${{ secrets.EC2_PATH }}/
+            sudo cp -r /tmp/deploy/* ${{ secrets.EC2_PATH }}/
             sudo rm -rf /tmp/deploy
 
       - name: Reload nginx
