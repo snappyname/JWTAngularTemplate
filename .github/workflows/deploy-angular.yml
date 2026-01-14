@@ -25,18 +25,14 @@ jobs:
       - name: Build Angular (production)
         run: npm run build -- --configuration production
 
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Deploy Angular via rsync
-        run: |
-          rsync -avz --delete \
-          dist/TemplateWebAuth/browser/ \
-          ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/angular-app/
+      - name: Copy files to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: dist/TemplateWebAuth/browser
+          target: ${{ secrets.EC2_PATH }}
 
       - name: Reload nginx
         uses: appleboy/ssh-action@v1.0.3
