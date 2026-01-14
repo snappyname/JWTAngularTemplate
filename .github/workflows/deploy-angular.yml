@@ -31,10 +31,19 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "*"
-          target: ${{ secrets.EC2_PATH }}
-          strip_components: 0
-        working-directory: dist/TemplateWebAuth/browser
+        source: "dist/TemplateWebAuth/browser"
+        target: "/tmp/deploy"
+    
+      - name: Move files to final location
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            rm -rf ${{ secrets.EC2_PATH }}/*
+            cp -r /tmp/deploy/browser/* ${{ secrets.EC2_PATH }}/
+            rm -rf /tmp/deploy
 
       - name: Reload nginx
         uses: appleboy/ssh-action@v1.0.3
