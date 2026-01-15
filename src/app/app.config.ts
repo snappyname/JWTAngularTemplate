@@ -9,6 +9,7 @@ import { withNgxsWebSocketPlugin } from '@ngxs/websocket-plugin';
 import { provideStore as provideStore_alias } from '@ngxs/store';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AuthRefreshInterceptor } from './core/api/refresh-token-interceptor';
+import { environment } from '../environment/environment';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -17,9 +18,8 @@ export const appConfig: ApplicationConfig = {
 		provideRouter(routes),
 		provideStore_alias(
 			[],
-			withNgxsReduxDevtoolsPlugin(),
+			...(environment.production ? [] : [withNgxsReduxDevtoolsPlugin(), withNgxsLoggerPlugin()]),
 			withNgxsFormPlugin(),
-			withNgxsLoggerPlugin(),
 			withNgxsRouterPlugin(),
 			withNgxsWebSocketPlugin(),
 		),

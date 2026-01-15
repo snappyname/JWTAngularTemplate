@@ -1,5 +1,5 @@
 import { authRoutes } from './auth/auth-routes.const';
-import { environment } from '../environment/environment.prod';
+import { environment } from '../environment/environment';
 
 export const AppConst = {
 	baseUrl: environment.apiUrl,
