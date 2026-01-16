@@ -3,7 +3,7 @@ import { environment } from '../environment/environment';
 
 export const AppConst = {
 	baseUrl: environment.apiUrl,
-	sinalRUrl: 'http://localhost:5069/hubs/broadcast',
+	sinalRUrl: environment.signalRUrl,
 	frontendUrl: environment.baseUrl as string,
 };
 
